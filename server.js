@@ -33,7 +33,7 @@ import('node-rpsls').then((module) => {
                 }
                 res.status(200).send(rps(shot))
              } else {
-                res.status(400).send()
+                res.status(400).send("400 BAD REQUEST")
             }
         })
         .get("/play/:shot", (req, res) => {
@@ -52,7 +52,6 @@ import('node-rpsls').then((module) => {
         .get('/play', (req, res) => {
             if (req.is('json') || req.is('application/x-www-form-urlencoded')) {
                 let { shot } = req.body || {}
-                console.log(shot)
                 shot = shot?.toLowerCase?.() || ''
                 if (!rpslsAcceptedShots.includes(shot)) {
                     res.status(400).send("400 BAD REQUEST")
@@ -60,7 +59,7 @@ import('node-rpsls').then((module) => {
                 }
                 res.status(200).send(rpsls(shot))
             } else {
-                res.status(400).send()
+                res.status(400).send("400 BAD REQUEST")
             }
         })
         .get("/play/:shot", (req, res) => {
