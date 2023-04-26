@@ -23,7 +23,7 @@ import('node-rpsls').then((module) => {
         .get('/', (req, res) => {
             res.status(200).send(rps())
         })
-        .post('/play', (req, res) => {
+        .get('/play', (req, res) => {
             if (req.is('json') || req.is('application/x-www-form-urlencoded')) {
                 const { shot } = req.body || {}
                 if (!rpsAcceptedShots.includes(shot)) {
@@ -35,7 +35,7 @@ import('node-rpsls').then((module) => {
                 res.status(400).send()
             }
         })
-        .post("/play/:shot", (req, res) => {
+        .get("/play/:shot", (req, res) => {
             const { shot } = req.params
             if (!rpsAcceptedShots.includes(shot)) {
                 res.status(400).send()
@@ -47,7 +47,7 @@ import('node-rpsls').then((module) => {
         .get('/', (req, res) => {
             res.status(200).send(rps())
         })
-        .post('/play', (req, res) => {
+        .get('/play', (req, res) => {
             if (req.is('json') || req.is('application/x-www-form-urlencoded')) {
                 const { shot } = req.body || {}
                 if (!rpslsAcceptedShots.includes(shot)) {
@@ -59,7 +59,7 @@ import('node-rpsls').then((module) => {
                 res.status(400).send()
             }
         })
-        .post("/play/:shot", (req, res) => {
+        .get("/play/:shot", (req, res) => {
             const { shot } = req.params
             if (!rpslsAcceptedShots.includes(shot)) {
                 res.status(400).send()
