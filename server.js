@@ -118,12 +118,10 @@ import('node-rpsls').then((module) => {
         req.on('end', () => {
           if (data) {
             try {
-              // Try to parse as JSON
               req.body = JSON.parse(data);
               next();
             } catch (e) {
-              // If JSON parsing fails, parse as URL-encoded
-              req.body = require('querystring').parse(data);
+              req.body = querystring.parse(data);
               next();
             }
           } else {
