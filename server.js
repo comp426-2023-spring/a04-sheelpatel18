@@ -27,19 +27,19 @@ import('node-rpsls').then((module) => {
                 let { shot } = req.body || {}
                 console.log(shot)
                 shot = shot?.toLowerCase?.() || ''
-                if (!rpsAcceptedShots.includes(shot)) {
-                    res.status(400).send("400 BAD REQUEST")
-                    return;
-                }
+                // if (!rpsAcceptedShots.includes(shot)) {
+                //     res.status(400).send("400 BAD REQUEST")
+                //     return;
+                // }
                 res.status(200).send(rps(shot))
         })
         .get("/play/:shot", (req, res) => {
             let { shot } = req.params
             shot = shot?.toLowerCase?.() || ''
-            if (!rpsAcceptedShots.includes(shot)) {
-                res.status(400).send("400 BAD REQUEST, not an acceptable shot")
-                return;
-            }
+            // if (!rpsAcceptedShots.includes(shot)) {
+            //     res.status(400).send("400 BAD REQUEST, not an acceptable shot")
+            //     return;
+            // }
             res.status(200).send(rps(shot))
         })
     const rpslsRouter = express.Router({ mergeParams: true})
@@ -47,25 +47,21 @@ import('node-rpsls').then((module) => {
             res.status(200).send(rps())
         })
         .get('/play', (req, res) => {
-            if (req.is('json') || req.is('application/x-www-form-urlencoded')) {
                 let { shot } = req.body || {}
                 shot = shot?.toLowerCase?.() || ''
-                if (!rpslsAcceptedShots.includes(shot)) {
-                    res.status(400).send("400 BAD REQUEST, not an acceptable shot")
-                    return;
-                }
+                // if (!rpslsAcceptedShots.includes(shot)) {
+                //     res.status(400).send("400 BAD REQUEST, not an acceptable shot")
+                //     return;
+                // }
                 res.status(200).send(rpsls(shot))
-            } else {
-                res.status(400).send("400 BAD REQUEST, incorrect input format")
-            }
         })
         .get("/play/:shot", (req, res) => {
             let { shot } = req.params
             shot = shot?.toLowerCase?.() || ''
-            if (!rpslsAcceptedShots.includes(shot)) {
-                res.status(400).send("400 BAD REQUEST, not an acceptable shot")
-                return;
-            }
+            // if (!rpslsAcceptedShots.includes(shot)) {
+            //     res.status(400).send("400 BAD REQUEST, not an acceptable shot")
+            //     return;
+            // }
             res.status(200).send(rpsls(shot))
         })
 
