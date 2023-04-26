@@ -85,11 +85,9 @@ import('node-rpsls').then((module) => {
     app.use("/app", appRouter)
     
     app.use((req, res, next) => {
-        res.status(404).send("Sorry, that route doesn't exist.");
+        res.status(404).send('404 NOT FOUND');
       });
 
-    app.listen(PORT, () => {
-        console.log(`Server running on port ${PORT}`)
-    })
+    app.listen(PORT)
 
 })
