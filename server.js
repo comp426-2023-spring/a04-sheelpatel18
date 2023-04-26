@@ -25,9 +25,10 @@ import('node-rpsls').then((module) => {
         })
         .get('/play', (req, res) => {
             if (req.is('json') || req.is('application/x-www-form-urlencoded')) {
-                const { shot } = req.body || {}
+                let { shot } = req.body || {}
+                shot = shot?.toLowerCase?.() || ''
                 if (!rpsAcceptedShots.includes(shot)) {
-                    res.status(400).send()
+                    res.status(400).send("400 BAD REQUEST")
                     return;
                 }
                 res.status(200).send(rps(shot))
@@ -36,9 +37,10 @@ import('node-rpsls').then((module) => {
             }
         })
         .get("/play/:shot", (req, res) => {
-            const { shot } = req.params
+            let { shot } = req.params
+            shot = shot?.toLowerCase?.() || ''
             if (!rpsAcceptedShots.includes(shot)) {
-                res.status(400).send()
+                res.status(400).send("400 BAD REQUEST")
                 return;
             }
             res.status(200).send(rps(shot))
@@ -49,20 +51,22 @@ import('node-rpsls').then((module) => {
         })
         .get('/play', (req, res) => {
             if (req.is('json') || req.is('application/x-www-form-urlencoded')) {
-                const { shot } = req.body || {}
-                if (!rpslsAcceptedShots.includes(shot.toLowerCase())) {
-                    res.status(400).send()
+                let { shot } = req.body || {}
+                shot = shot?.toLowerCase?.() || ''
+                if (!rpslsAcceptedShots.includes(shot)) {
+                    res.status(400).send("400 BAD REQUEST")
                     return;
                 }
-                res.status(200).send(rpsls(shot.toLowerCase()))
+                res.status(200).send(rpsls(shot))
             } else {
                 res.status(400).send()
             }
         })
         .get("/play/:shot", (req, res) => {
-            const { shot } = req.params
+            let { shot } = req.params
+            shot = shot?.toLowerCase?.() || ''
             if (!rpslsAcceptedShots.includes(shot)) {
-                res.status(400).send()
+                res.status(400).send("400 BAD REQUEST")
                 return;
             }
             res.status(200).send(rpsls(shot))
