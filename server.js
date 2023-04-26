@@ -28,12 +28,12 @@ import('node-rpsls').then((module) => {
                 let { shot } = req.body || {}
                 shot = shot?.toLowerCase?.() || ''
                 if (!rpsAcceptedShots.includes(shot)) {
-                    res.status(400).send("400 BAD REQUEST")
+                    res.status(400).send("400 BAD REQUEST, not an acceptable shot")
                     return;
                 }
                 res.status(200).send(rps(shot))
              } else {
-                res.status(400).send("400 BAD REQUEST")
+                res.status(400).send("400 BAD REQUEST, incorrect input format")
             }
         })
         .get("/play/:shot", (req, res) => {
