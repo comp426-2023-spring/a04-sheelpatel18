@@ -128,6 +128,7 @@ import('node-rpsls').then((module) => {
             }
           } else {
             req.body = {};
+            console.log("NO BODY")
             next();
           }
         });
