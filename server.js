@@ -50,11 +50,11 @@ import('node-rpsls').then((module) => {
         .get('/play', (req, res) => {
             if (req.is('json') || req.is('application/x-www-form-urlencoded')) {
                 const { shot } = req.body || {}
-                if (!rpslsAcceptedShots.includes(shot)) {
+                if (!rpslsAcceptedShots.includes(shot.toLowerCase())) {
                     res.status(400).send()
                     return;
                 }
-                res.status(200).send(rpsls(shot))
+                res.status(200).send(rpsls(shot.toLowerCase()))
             } else {
                 res.status(400).send()
             }
