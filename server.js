@@ -23,7 +23,7 @@ import('node-rpsls').then((module) => {
         .get('/', (req, res) => {
             res.status(200).send(rps())
         })
-        .get('/play', (req, res) => {
+        .get('/play/', (req, res) => {
             console.log(req.body)
             console.log(req.headers)
                 let { shot } = req.body || {}
@@ -47,7 +47,7 @@ import('node-rpsls').then((module) => {
         .get('/', (req, res) => {
             res.status(200).send(rps())
         })
-        .get('/play', (req, res) => {
+        .get('/play/', (req, res) => {
                 let { shot } = req.body || {}
                 shot = shot?.toLowerCase?.() || ''
                 // if (!rpslsAcceptedShots.includes(shot)) {
@@ -78,7 +78,7 @@ import('node-rpsls').then((module) => {
 
     const app = express()
 
-    app.use(express.urlencoded({ extended: true }));
+    app.use(express.urlencoded({ extended: false }));
     app.use(express.json());
     app.use("/app", appRouter)
     
