@@ -91,6 +91,7 @@ app.use((req, res, next) => {
         body += chunk;
       });
       req.on('end', () => {
+         console.log("B: ", body)
         try {
           // Try parsing the body as URL-encoded form data
           const parsedBody = querystring.parse(body);
