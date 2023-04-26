@@ -4,6 +4,7 @@ import('node-rpsls').then((module) => {
     const { rps, rpsls } = module
     const minimist = require('minimist')
     const express = require('express')
+    const querystring = require('querystring')
 
     const rpsAcceptedShots = [
         'rock',
@@ -81,23 +82,36 @@ import('node-rpsls').then((module) => {
     app.use(express.urlencoded({ extended: true }));
     app.use(express.json());
 
-    app.use((req, res, next) => {
-        // If the Content-Type header is missing, try parsing the request body as URL-encoded form data first
-        if (!req.headers['content-type']) {
-            try {
-                express.urlencoded({ extended: true })(req, res, next);
-            } catch (error) {
-                // If parsing as URL-encoded form data fails, try parsing as JSON next
-                if (error instanceof SyntaxError) {
-                    express.json()(req, res, next);
-                } else {
-                    next(error);
-                }
-            }
-        } else {
+    
+app.use((req, res, next) => {
+    if (!req.headers['content-type']) {
+      // If the Content-Type header is missing, manually parse the request body
+      let body = '';
+      req.on('data', (chunk) => {
+        body += chunk;
+      });
+      req.on('end', () => {
+        try {
+          // Try parsing the body as URL-encoded form data
+          const parsedBody = querystring.parse(body);
+          req.body = parsedBody;
+          next();
+        } catch (error) {
+          try {
+            // If parsing as URL-encoded form data fails, try parsing as JSON
+            const parsedBody = JSON.parse(body);
+            req.body = parsedBody;
             next();
+          } catch (error) {
+            // If parsing as JSON also fails, return a 400 Bad Request error
+            res.status(400).send('Invalid Request Body');
+          }
         }
-    });
+      });
+    } else {
+      next();
+    }
+  });
 
     app.use("/app", appRouter)
 

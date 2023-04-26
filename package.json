@@ -21,6 +21,7 @@
     "esm": "^3.2.25",
     "express": "^4.18.2",
     "minimist": "^1.2.8",
-    "node-rpsls": "file:lib"
+    "node-rpsls": "file:lib",
+    "querystring": "^0.2.1"
   }
 }
