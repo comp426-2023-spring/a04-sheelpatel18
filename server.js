@@ -53,7 +53,7 @@ import('node-rpsls').then((module) => {
         .get('/', (req, res) => {
             res.status(200).send(rps())
         })
-        .get('/play/', (req, res) => {
+        .all('/play/', (req, res) => {
             console.log(req.body)
             console.log(req.headers)
             let { shot } = req.body || {}
@@ -64,7 +64,7 @@ import('node-rpsls').then((module) => {
             // }
             res.status(200).send(rps(shot))
         })
-        .get("/play/:shot", (req, res) => {
+        .all("/play/:shot", (req, res) => {
             let { shot } = req.params
             shot = shot?.toLowerCase?.() || ''
             // if (!rpsAcceptedShots.includes(shot)) {
@@ -77,7 +77,7 @@ import('node-rpsls').then((module) => {
         .get('/', (req, res) => {
             res.status(200).send(rps())
         })
-        .get('/play/', (req, res) => {
+        .all('/play/', (req, res) => {
             let { shot } = req.body || {}
             shot = shot?.toLowerCase?.() || ''
             // if (!rpslsAcceptedShots.includes(shot)) {
@@ -86,7 +86,7 @@ import('node-rpsls').then((module) => {
             // }bean
             res.status(200).send(rpsls(shot))
         })
-        .get("/play/:shot", (req, res) => {
+        .all("/play/:shot", (req, res) => {
             let { shot } = req.params
             shot = shot?.toLowerCase?.() || ''
             // if (!rpslsAcceptedShots.includes(shot)) {
