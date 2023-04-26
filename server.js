@@ -27,7 +27,7 @@ import('node-rpsls').then((module) => {
                 let { shot } = req.body || {}
                 shot = shot?.toLowerCase?.() || ''
                 if (!rpsAcceptedShots.includes(shot)) {
-                    res.status(400).send("400 BAD REQUEST, not an acceptable shot")
+                    res.status(400).send("400 BAD REQUEST")
                     return;
                 }
                 res.status(200).send(rps(shot))
