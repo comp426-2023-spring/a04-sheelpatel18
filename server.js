@@ -24,6 +24,7 @@ import('node-rpsls').then((module) => {
             res.status(200).send(rps())
         })
         .get('/play', (req, res) => {
+            console.log(req.body)
                 let { shot } = req.body || {}
                 console.log(shot)
                 shot = shot?.toLowerCase?.() || ''
