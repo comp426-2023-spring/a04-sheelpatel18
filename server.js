@@ -24,7 +24,6 @@ import('node-rpsls').then((module) => {
             res.status(200).send(rps())
         })
         .get('/play', (req, res) => {
-            if (req.is('json') || req.is('application/x-www-form-urlencoded')) {
                 let { shot } = req.body || {}
                 shot = shot?.toLowerCase?.() || ''
                 if (!rpsAcceptedShots.includes(shot)) {
@@ -32,10 +31,6 @@ import('node-rpsls').then((module) => {
                     return;
                 }
                 res.status(200).send(rps(shot))
-             } else {
-                console.log(req.headers['content-type'])
-                res.status(400).send("400 BAD REQUEST, incorrect input format")
-            }
         })
         .get("/play/:shot", (req, res) => {
             let { shot } = req.params
