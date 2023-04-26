@@ -25,6 +25,7 @@ import('node-rpsls').then((module) => {
         })
         .get('/play', (req, res) => {
                 let { shot } = req.body || {}
+                console.log(shot)
                 shot = shot?.toLowerCase?.() || ''
                 if (!rpsAcceptedShots.includes(shot)) {
                     res.status(400).send("400 BAD REQUEST")
