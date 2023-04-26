@@ -70,7 +70,7 @@ import('node-rpsls').then((module) => {
 
     const appRouter = express.Router({ mergeParams: true})
         .get("/", (req, res) => {
-            res.status(200).send()
+            res.status(200).send('200 OK')
         })
         .use('/rps', rpsRouter)
         .use('/rpsls', rpslsRouter)
