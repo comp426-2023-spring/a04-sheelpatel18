@@ -53,6 +53,7 @@ import('node-rpsls').then((module) => {
             if (req.is('json') || req.is('application/x-www-form-urlencoded')) {
                 let { shot } = req.body || {}
                 shot = shot?.toLowerCase?.() || ''
+                console.log(shot)
                 if (!rpslsAcceptedShots.includes(shot)) {
                     res.status(400).send("400 BAD REQUEST")
                     return;
