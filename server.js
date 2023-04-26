@@ -33,6 +33,7 @@ import('node-rpsls').then((module) => {
                 }
                 res.status(200).send(rps(shot))
              } else {
+                console.log(req.headers['content-type'])
                 res.status(400).send("400 BAD REQUEST, incorrect input format")
             }
         })
@@ -40,7 +41,7 @@ import('node-rpsls').then((module) => {
             let { shot } = req.params
             shot = shot?.toLowerCase?.() || ''
             if (!rpsAcceptedShots.includes(shot)) {
-                res.status(400).send("400 BAD REQUEST")
+                res.status(400).send("400 BAD REQUEST, not an acceptable shot")
                 return;
             }
             res.status(200).send(rps(shot))
@@ -54,19 +55,19 @@ import('node-rpsls').then((module) => {
                 let { shot } = req.body || {}
                 shot = shot?.toLowerCase?.() || ''
                 if (!rpslsAcceptedShots.includes(shot)) {
-                    res.status(400).send("400 BAD REQUEST")
+                    res.status(400).send("400 BAD REQUEST, not an acceptable shot")
                     return;
                 }
                 res.status(200).send(rpsls(shot))
             } else {
-                res.status(400).send("400 BAD REQUEST")
+                res.status(400).send("400 BAD REQUEST, incorrect input format")
             }
         })
         .get("/play/:shot", (req, res) => {
             let { shot } = req.params
             shot = shot?.toLowerCase?.() || ''
             if (!rpslsAcceptedShots.includes(shot)) {
-                res.status(400).send("400 BAD REQUEST")
+                res.status(400).send("400 BAD REQUEST, not an acceptable shot")
                 return;
             }
             res.status(200).send(rpsls(shot))
