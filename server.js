@@ -168,6 +168,7 @@ import('node-rpsls').then((module) => {
     app.use("/app", appRouter)
 
     app.use((req, res, next) => {
+        console.log(req.url)
         res.status(404).send('404 NOT FOUND');
     });
 
