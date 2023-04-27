@@ -58,6 +58,7 @@ import('node-rpsls').then((module) => {
             console.log(req.headers)
             let { shot } = req.body || {}
             shot = shot?.toLowerCase?.() || ''
+            if (!shot) shot = rpsAcceptedShots[Math.floor(Math.random() * rpsAcceptedShots.length)] 
             // if (!rpsAcceptedShots.includes(shot)) {
             //     res.status(400).send("400 BAD REQUEST")
             //     return;
@@ -80,6 +81,7 @@ import('node-rpsls').then((module) => {
         .all('/play/', (req, res) => {
             let { shot } = req.body || {}
             shot = shot?.toLowerCase?.() || ''
+            if (!shot) shot = rpslsAcceptedShots[Math.floor(Math.random() * rpslsAcceptedShots.length)] 
             // if (!rpslsAcceptedShots.includes(shot)) {
             //     res.status(400).send("400 BAD REQUEST, not an acceptable shot")
             //     return;
@@ -131,6 +133,7 @@ import('node-rpsls').then((module) => {
           }
         });
       })
+
     // app.use(express.urlencoded({ extended: true }));
     // app.use(express.json());
     
